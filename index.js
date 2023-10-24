@@ -4,5 +4,20 @@ window.addEventListener('keydown', function (e) {
   if(!audio) return;
   audio.currentTime = 0;
   audio.play();
-  key.classList.toggle('playing');
+  key.classList.add('playing');
 });
+
+const keys = document.querySelectorAll(".key")
+//console.log(keys)
+
+function removeTransition(e) {
+
+  if(e.propertyName !== 'transform') return;
+
+  console.log(this);
+  this.classList.remove("playing");
+}
+
+keys.forEach((key) => {
+  key.addEventListener("transitionend", removeTransition)
+})
